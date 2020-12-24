@@ -21,7 +21,7 @@ def root():
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     if request.method == "GET":
-        return render_template("upload.html")
+        return render_template("upload.html", files=os.listdir(app.config["UPLOAD_FOLDER"]))
     elif request.method == "POST":
         file = request.files['file']
         if file.filename == "":
@@ -29,7 +29,7 @@ def upload():
         if file.filename.split(".")[1] in DISALLOWED_FILE_EXTENSIONS:
             abort(400)
         file.save(os.path.join(app.config["UPLOAD_FOLDER"], secure_filename(file.filename)))
-        return redirect(url_for("upload"))
+        return redirect(f"/uploads/{file.filename}")
 
 @app.route("/uploads/<filename>")
 def download(filename):

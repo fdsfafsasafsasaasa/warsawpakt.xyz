@@ -1,4 +1,4 @@
-from main import app
+from paktsite import app
 
 
 if __name__ == "__main__":

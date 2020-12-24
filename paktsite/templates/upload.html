@@ -5,5 +5,11 @@
         <input type="file" id="fileUpload" name="file">
         <input type="submit">
     </form>
-    <a href="/">Return to homepage</a>
+    <h2>All files that have been uploaded:</h2>
+    <div>
+        {% for file in files %}
+        <p><a href="static/client/uploads/{{file}}">{{file}}</p>
+        {% endfor %}
+    </div>
+    <h3><a href="/">Return to homepage</a></h3>
 {% endblock %}

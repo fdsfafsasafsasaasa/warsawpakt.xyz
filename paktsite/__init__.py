@@ -4,4 +4,4 @@ app = Flask(__name__)
 
 import paktsite.routes
 
-app.config["UPLOAD_FOLDER"] = "static/client/uploads/"
+app.config["UPLOAD_FOLDER"] = "paktsite/static/client/uploads/"
