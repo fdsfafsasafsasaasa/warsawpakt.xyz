@@ -1,4 +1,5 @@
 from flask import render_template, abort, send_from_directory, request, url_for
+from flask.helpers import send_file
 from werkzeug.utils import redirect, secure_filename
 
 from paktsite import app
@@ -32,4 +33,4 @@ def upload():
 
 @app.route("/uploads/<filename>")
 def download(filename):
-    return send_from_directory(app.config["UPLOAD_FOLDER"], filename=secure_filename(filename))
+    return send_from_directory(app.config["UPLOAD_FOLDER"], filename=filename)
