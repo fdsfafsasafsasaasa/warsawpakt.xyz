@@ -5,7 +5,11 @@
         <input type="file" id="fileUpload" name="file">
         <input type="submit">
     </form>
-    <h2>All files that have been uploaded:</h2>
+    {% if files|length %}
+        <h2>All files that have been uploaded:</h2>
+    {% else %}
+        <h2>Oh, how sad, nobody has uploaded anything :(</h2>
+    {% endif %}
     <div>
         {% for file in files %}
         <p><a href="/uploads/{{file}}">{{file}}</p>
