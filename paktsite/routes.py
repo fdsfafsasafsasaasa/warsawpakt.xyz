@@ -16,12 +16,12 @@ DISALLOWED_FILE_EXTENSIONS = {
 
 @app.route("/")
 def root():
-    return render_template("index.html", ip=request.remote_addr)
+    return render_template("public/index.html", ip=request.remote_addr)
 
 @app.route("/upload", methods=["GET", "POST"])
 def upload():
     if request.method == "GET":
-        return render_template("upload.html", files=os.listdir(app.config["UPLOAD_FOLDER"]))
+        return render_template("public/upload.html", files=os.listdir(app.config["UPLOAD_FOLDER"]))
     elif request.method == "POST":
         file = request.files['file']
         if file.filename == "":
@@ -34,3 +34,16 @@ def upload():
 @app.route("/uploads/<filename>")
 def download(filename):
     return send_from_directory(app.config["UPLOAD_FOLDER"], filename=filename)
+
+@app.errorhandler(500)
+def err_500():
+    return render_template("errors/500.html")
+
+
+@app.errorhandler(401)
+def err_401():
+    return render_template("errors/401.html")
+
+@app.errorhandler(404)
+def err_404():
+    return render_template("errors/404.html")
