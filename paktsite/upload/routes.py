@@ -14,10 +14,10 @@ DISALLOWED_FILE_EXTENSIONS = {
     "bash"
 }
 
-@upload.route("/", methods=["GET", "POST"])
+@upload.route("/upload", methods=["GET", "POST"])
 def uploadFile():
     if request.method == "GET":
-        return render_template("upload.html", files=os.listdir(app.config["UPLOAD_FOLDER"]))
+        return render_template("upload/upload.html", files=os.listdir(app.config["UPLOAD_FOLDER"]))
     elif request.method == "POST":
         file = request.files['file']
         if file.filename == "":
